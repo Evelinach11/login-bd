@@ -6,10 +6,19 @@ export const Login = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    console.log("Username:", username);
-    console.log("Password:", password);
+    axios
+      .post("http://localhost:8081/users/auth/login", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        console.log("Login successful!");
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Login failed!", error);
+      });
   };
-
   return (
     <div>
       <h2>Login</h2>
